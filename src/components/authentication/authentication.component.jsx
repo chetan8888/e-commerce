@@ -1,8 +1,9 @@
 import { Fragment } from "react";
-import { signInWithGooglePopup, createUserDocumentFromAuth, signInWithGoogleRedirect } from "../../utils/firebase/firebase.utils";
 import SignUpForm from "../sign-up-form/sign-up-form.component";
+import SignInForm from "../sign-in-form/sign-in-form.component";
+import './authentication.styles.scss'
 
-const SignIn = () => {
+const Authentication = () => {
 
     // When we signin using redirect, we will move to a new url and once the authentication is successful there we will be redirected back to our current page. Now the auth object will store the authentication details and since the component is remounted the useEffect will run and this is how we can get the authentication details.
     // useEffect(async () => {
@@ -12,20 +13,13 @@ const SignIn = () => {
     //     }
     // }, [])
 
-
-    const logGoogleUser = async () => {
-        const {user} = await signInWithGooglePopup();
-        const userDocRef = await createUserDocumentFromAuth(user);
-    }
-
     return (
-        <Fragment>
-            <h2>Sign In Page</h2>
-            <button onClick={logGoogleUser}> Sign In with Google Popup</button>
-            {/* <button onClick={signInWithGoogleRedirect}> Sign In with Google redirect</button> */}
+        <div className='authentication-container'>
+            {/* <h2>Sign In Page</h2> */}
+            <SignInForm />
             <SignUpForm />
-        </Fragment>
+        </div>
     )
 }
 
-export default SignIn;
+export default Authentication;
